@@ -1,0 +1,10 @@
+# mkinitcpio preset file for linux-lts, chromebook Asus c100p (minnie)
+
+ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="5.10.21-c100p"
+
+PRESETS=('default')
+
+default_config="/etc/mkinitcpio.conf"
+default_image="/boot/initramfs-minnie.img"
+#default_options=""
