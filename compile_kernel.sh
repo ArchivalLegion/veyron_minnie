@@ -35,7 +35,7 @@ vbutil_kernel \
 --arch arm \
 --keyblock kernel.keyblock \
 --signprivate kernel_data_key.vbprivk \
---config cmdline \
+--config kernel.cmdline \
 --bootloader bootloader.bin
 echo "depthcharge kernel done!"
 
@@ -45,7 +45,7 @@ cp vmlinux.kpart /boot/vmlinux.kpart
 echo "Copied files into /boot"
 
 # Flash the image
-#echo "Flashing the kernel image"
-#dd if=/boot/vmlinux.kpart of=/dev/mmcblk1p1
-#sync
-#echo "Flashed!, everything is done!"
+echo "Flashing the kernel image"
+dd if=/boot/vmlinux.kpart of=/dev/mmcblk0p3
+sync
+echo "Flashed!, everything is done!"
