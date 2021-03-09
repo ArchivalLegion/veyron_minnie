@@ -1,4 +1,4 @@
-# mkinitcpio preset file for linux-lts, chromebook Asus c100p (minnie)
+# mkinitcpio preset file for chromebook Asus c100p (minnie)
 
 ALL_config="/etc/mkinitcpio.conf"
 ALL_kver="5.10.21-c100p"
