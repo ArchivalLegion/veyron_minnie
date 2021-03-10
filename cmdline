@@ -1,1 +1,0 @@
-cros_secure console=tty0 init=/sbin/init root=PARTUUID=23e5ab81-4042-4c49-9aa9-9916498fd181/PARTNROFF=1 rootwait rw noinitrd
