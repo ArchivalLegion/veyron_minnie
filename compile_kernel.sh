@@ -46,6 +46,6 @@ echo "Copied files into /boot"
 
 # Flash the image
 echo "Flashing the kernel image"
-dd if=/boot/vmlinux.kpart of=/dev/mmcblk0p1
+dd if=/boot/vmlinux.kpart of=/dev/disk/by-partlabel/Kernel-A
 sync
 echo "Flashed!, everything is done!"
