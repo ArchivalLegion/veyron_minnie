@@ -1,4 +1,4 @@
-# minnie_veyron
+# README
 WIP files for Asus c100p (chromebook veyron_minnie)
 
 # NOTICE
