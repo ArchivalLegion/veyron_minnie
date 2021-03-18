@@ -1,4 +1,4 @@
-# Linux lts 5.10 Asus c100p
+# Linux 4.19 lts
 
 ALL_config="/etc/mkinitcpio.conf"
 ALL_kver="4.19.181"
