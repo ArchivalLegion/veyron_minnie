@@ -1,1 +1,1 @@
-console=tty0 init=/sbin/init root=/dev/by-partlabel/linux rootfstype=ext4 rootwait rw
+quiet loglevel=1 nowatchdog threadirqs noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off tsx=on tsx_async_abort=off mitigations=off console=tty0 init=/sbin/init root=UUID=ce16fbdd-eac5-454c-9b75-eac6caafddbb rootfstype=ext4 rootwait rw
