@@ -1,7 +1,7 @@
 # Linux lts 5.10 Asus c100p
 
 ALL_config="/etc/mkinitcpio.conf"
-ALL_kver="5.10.22-c100p"
+ALL_kver="4.19.181"
 
 PRESETS=('default')
 
