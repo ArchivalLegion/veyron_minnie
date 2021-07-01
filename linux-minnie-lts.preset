@@ -1,10 +1,10 @@
-# Linux 4.19 lts
+# Linux 5.10 lts
 
 ALL_config="/etc/mkinitcpio.conf"
-ALL_kver="4.19.181"
-
+ALL_kver="5.10.47"
 PRESETS=('default')
-
+COMPRESSION="cat"
+COMPRESSION_OPTOION=""
 default_config="/etc/mkinitcpio.conf"
 default_image="/boot/initramfs-minnie.img"
 #default_options=""
