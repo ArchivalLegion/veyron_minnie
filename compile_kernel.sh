@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 # set -xv
+COMMON_FLAGS="-march=native -mtune=native -O2 -pipe"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+MAKEFLAGS="-j$(nproc)"
 
 echo "Compiling the kernel" && {
 make zImage
@@ -12,9 +18,9 @@ echo "Compiling done!"
 }
 
 : '
-echo "Making a initramfs" && {
+echo "Generating initramfs" && {
 mkinitcpio -p ./linux-minnie-lts.preset
-echo "initramfs done!"
+echo "Initramfs done!"
 }
 :
 
@@ -22,10 +28,10 @@ echo "Generating kernel image" && {
 mkimage \
 -D "-I dts -O dtb -p 2048" \
 -f kernel.its vmlinux.uimg
-echo " Kernel image done!"
+echo "Kernel image done!"
 }
 
-echo "Placing empty bootloader.bin" && {
+echo "Generating empty bootloader.bin" && {
 dd if=/dev/zero of=bootloader.bin bs=512 count=1
 echo "Bootloader done!"
 }
