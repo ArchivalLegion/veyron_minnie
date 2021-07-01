@@ -1,33 +1,36 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
+# set -xv
 
-# Start by compiling and compressing the kernel + tidly bits
-echo "Starting the hellacious process"
+echo "Compiling the kernel" && {
 make zImage
 make dtbs
 make modules
 make INSTALL_DTBS_PATH="/boot/dtbs" dtbs_install
 make INSTALL_MOD_PATH="/usr" modules_install
 echo "Compiling done!"
+}
 
-# Make a initramfs
-echo "Making a initramfs"
+: '
+echo "Making a initramfs" && {
 mkinitcpio -p ./linux-minnie-lts.preset
 echo "initramfs done!"
+}
+:
 
-# Generate the kernel image (vmlinux.uimg)
-echo "Generating kernel image"
+echo "Generating kernel image" && {
 mkimage \
 -D "-I dts -O dtb -p 2048" \
 -f kernel.its vmlinux.uimg
-echo "Image done!"
+echo " Kernel image done!"
+}
 
-# Empty placeholder for bootloader.bin
-echo "Placing empty bootloader.bin"
+echo "Placing empty bootloader.bin" && {
 dd if=/dev/zero of=bootloader.bin bs=512 count=1
-echo "bootloader done!"
+echo "Bootloader done!"
+}
 
-# Combine various files into a depthcharge kernel
-echo "Generating vboot image"
+echo "Generating Depthcharge image" && {
 vbutil_kernel \
 --pack vmlinux.kpart \
 --version 1 \
@@ -37,15 +40,17 @@ vbutil_kernel \
 --signprivate kernel_data_key.vbprivk \
 --config kernel.cmdline \
 --bootloader bootloader.bin
-echo "depthcharge kernel done!"
+echo "Depthcharge image done!"
+}
 
-# Move files into /boot
+echo "Copying kernel image to /boot" && {
 cp arch/arm/boot/zImage /boot/zImage
 cp vmlinux.kpart /boot/vmlinux.kpart
 echo "Copied files into /boot"
+}
 
-# Flash the image
-echo "Flashing the kernel image"
+echo "Flashing the kernel image" && {
 dd if=/boot/vmlinux.kpart of=/dev/disk/by-partlabel/Kernel-A
 sync
-echo "Flashed!, everything is done!"
+echo "Flashed! Everything is done!"
+}
