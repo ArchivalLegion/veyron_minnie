@@ -3,8 +3,8 @@
 ALL_config="/etc/mkinitcpio.conf"
 ALL_kver="5.10.47"
 PRESETS=('default')
-COMPRESSION="cat"
-COMPRESSION_OPTOION=""
+COMPRESSION="lz4"
+COMPRESSION_OPTION=""
 default_config="/etc/mkinitcpio.conf"
 default_image="/boot/initramfs-minnie.img"
 #default_options=""
